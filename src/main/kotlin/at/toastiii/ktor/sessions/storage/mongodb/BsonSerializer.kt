@@ -1,6 +1,6 @@
 package at.toastiii.ktor.sessions.storage.mongodb
 
-import at.toastiii.ktor.sessions.storage.serializer.SessionSerializer
+import at.toastiii.ktor.sessions.storage.SessionSerializer
 import com.google.gson.Gson
 import org.bson.Document
 import kotlin.reflect.KClass

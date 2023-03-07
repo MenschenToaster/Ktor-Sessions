@@ -1,5 +1,6 @@
 package at.toastiii.ktor.sessions.storage.mongodb
 
+import at.toastiii.ktor.sessions.Session
 import at.toastiii.ktor.sessions.storage.SessionStorage
 import at.toastiii.ktor.sessions.util.plus
 import com.mongodb.client.MongoCollection
@@ -12,7 +13,7 @@ import java.time.Duration
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
-open class MongoDBSessionStorage<T : Any>(
+open class MongoDBSessionStorage<T : Session>(
     private val bsonSerializer: BsonSerializer<T>,
     private val collection: MongoCollection<Document>,
     private val expireAfter: Duration? = null

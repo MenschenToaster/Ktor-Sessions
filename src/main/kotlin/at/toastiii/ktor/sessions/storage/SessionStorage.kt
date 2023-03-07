@@ -1,5 +1,6 @@
 package at.toastiii.ktor.sessions.storage
 
+import at.toastiii.ktor.sessions.Session
 import kotlin.jvm.Throws
 
 /*
@@ -7,7 +8,7 @@ import kotlin.jvm.Throws
  * Read should either always return an immutable class or the objects returned by two read calls should never be the
  * same instance. They should return the appropriate data but the instance in memory should never be the same.
  */
-interface SessionStorage<T : Any> {
+interface SessionStorage<T : Session> {
 
     /**
      * Writes a session [sessionData] for [id].

@@ -8,5 +8,6 @@ data class SessionProvider<S : Session>(
     val name: String,
     val type: KClass<S>,
     val transport: SessionTransport,
-    val storage: SessionStorage<S>
+    val storage: SessionStorage<S>,
+    val autoCommit: Boolean
 )

@@ -5,4 +5,4 @@ import io.ktor.util.*
 /**
  * Generates a secure random session ID
  */
-fun generateSessionId(): String = generateNonce() + generateNonce()
+fun generateSessionId(): String = generateNonce() + generateNonce() + System.currentTimeMillis()

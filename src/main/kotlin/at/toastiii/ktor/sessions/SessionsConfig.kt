@@ -1,5 +1,8 @@
 package at.toastiii.ktor.sessions
 
+import at.toastiii.ktor.sessions.storage.SessionStorage
+import at.toastiii.ktor.sessions.transport.CookieConfiguration
+import at.toastiii.ktor.sessions.transport.CookieSessionTransport
 import io.ktor.util.*
 
 @KtorDsl
@@ -24,4 +27,20 @@ class SessionsConfig {
         registered.add(provider)
     }
 
+    inline fun <reified T : Session> cookie(
+        name: String, storage: SessionStorage<T>,
+        autoCommit: Boolean = true, cookieName: String = name,
+        builder: CookieConfiguration.() -> Unit = {}
+    ) {
+
+        register(
+            SessionProvider(
+                name = name,
+                type = T::class,
+                storage = storage,
+                autoCommit = autoCommit,
+                transport = CookieSessionTransport(cookieName, CookieConfiguration().apply { builder() }),
+            )
+        )
+    }
 }

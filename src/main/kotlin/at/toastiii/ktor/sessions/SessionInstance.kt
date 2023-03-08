@@ -137,11 +137,18 @@ class SessionInstance<S : Session>(
     }
 
     fun setValue(data: S?) {
-        if(committed)
-            throw IllegalStateException("Already committed session.")
-        if(id == null)
-            id = generateSessionId()
-        current = data
+        //Prevent read while write is in progress and vice versa
+        readLock.lock()
+        try {
+            if(committed)
+                throw IllegalStateException("Already committed session.")
+            if(id == null)
+                id = generateSessionId()
+            current = data
+            isInitialized = true
+        } finally {
+            readLock.lock()
+        }
     }
 
 
@@ -169,7 +176,7 @@ class SessionInstance<S : Session>(
     }
 
     fun shouldAutoCommit(): Boolean {
-        return autoCommit && id != null && !committed && current != initialData
+        return autoCommit && id != null && !committed && current != initialData && isInitialized
     }
 
 }

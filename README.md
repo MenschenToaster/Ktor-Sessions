@@ -11,3 +11,9 @@ data on the server.
 
 # Supported storage types
 MongoDB and in memory (for development only)
+
+# Todo
+
+TODO:
+- [ ] Unit tests
+- [ ] Optional Caffeine Cache

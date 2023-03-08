@@ -10,9 +10,10 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("io.ktor:ktor-server-core:2.2.3")
+    implementation("io.ktor:ktor-server-core:2.2.4")
 
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.mongodb:mongodb-driver-sync:4.9.0")

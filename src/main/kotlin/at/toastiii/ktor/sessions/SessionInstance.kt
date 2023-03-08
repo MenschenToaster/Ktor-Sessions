@@ -65,8 +65,9 @@ internal class SessionsContextImpl(
 
     override suspend fun autoCommit() {
         instances.forEach {
-            if(it.value.shouldAutoCommit())
+            if(it.value.shouldAutoCommit()) {
                 it.value.commit()
+            }
         }
     }
 
@@ -118,7 +119,11 @@ class SessionInstance<S : Session>(
         readLock.lock()
         try {
             if(!isInitialized) {
-                initialData = provider.storage.read(id!!)
+                try {
+                    initialData = provider.storage.read(id!!)
+                } catch (e: NoSuchElementException) {
+                    //Ignore
+                }
 
                 @Suppress("UNCHECKED_CAST")
                 current = initialData?.clone() as S?

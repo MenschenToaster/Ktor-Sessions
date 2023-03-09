@@ -37,6 +37,10 @@ internal class SessionsContextImpl(
     override fun set(name: String, value: Session?) {
         val instance = instances[name] ?: throw IllegalStateException("No session provider with the name $name found.")
 
+        if(value == null) {
+            instance.setValue(null)
+            return
+        }
         setTyped(instance, value)
     }
 

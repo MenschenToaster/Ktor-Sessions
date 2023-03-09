@@ -12,6 +12,9 @@ data on the server.
 # Supported storage types
 MongoDB and in memory (for development only)
 
+# Importing
+You can find the library on jitpack: https://jitpack.io/#MenschenToaster/Ktor-Sessions
+
 # Todo
 
 TODO:
